@@ -1,0 +1,99 @@
+:root {
+  --background-color: #0B0C10;
+  --background-color-variant: #1F2833;
+  --text-color: #C5C6C7;
+  --main-color: #66FCF1;
+  --main-color-variant: #d4ddd9;
+  --accent-color: #a66460;
+  --highlight-color: #45A29E;
+
+  --text-color-dark-bg: #ffffff;
+  --text-color-headlines: var(--main-color);
+  --nav-active-color: var(--main-color);
+
+  --font-family-body: Helvetica, Arial, sans-serif;
+  --font-family-monospace: "Audiowide", "Courier New", Courier, monospace;
+}
+
+body {
+  font-family: var(--font-family-body);
+  color: var(--text-color);
+  font-size: 1.125rem;
+  background-color: var(--background-color);
+}
+
+h1 {
+  font-size: 2.8rem;
+  }
+
+h2 {
+  font-size: 2.3rem;
+}
+
+h3 {
+  font-size: 2.0rem;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 1.3rem;
+  text-align: center;
+
+}
+
+section {
+  /* text should be centered  with about 20% distance from left and right */
+  margin: 0% auto;
+  width: 60%;
+  border: 2px solid var(--main-color);
+  padding: 75px;
+}
+
+footer { 
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding-left: 20%;
+  padding-top: 20px;
+  border: 2px solid var(--main-color);
+
+  width: 60%;
+  margin: 0% auto;
+  /* padding left right 75px */
+  padding-left: 75px;
+  padding-right: 75px;
+}
+
+.header {
+  font-family: var(--font-family-monospace);
+  color: var(--text-color-headlines);
+  text-align: center;
+  position: relative;
+  margin: 0 auto; 
+}
+
+.canvas {
+  background-color: var(--main-color);
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.game-description {
+  font-size: 1.8rem;
+}
+
+.bullet-point {
+  font-size: 1.3rem;
+  text-align: left;
+  margin-left: 35%;
+}
+
+.footer-bullet-point {
+  list-style-type: "@ ";
+}
+

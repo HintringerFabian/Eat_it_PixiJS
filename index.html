@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+        <link href="./styles/styles.css" rel="stylesheet" />
+        <link href="./styles/prism.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <h1 class="header">
+                PixiJS
+                <img src="https://pixijs.io/examples/examples/assets/bunny.png" alt="PixiJs Bunny" class="bunny">
+            </h1>
+            
+        </header>
+
+        <section>
+            <h2 class="header">Erklärung</h2>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius amet ad nihil eum, ducimus magni praesentium deserunt esse, repellendus vero itaque aliquid distinctio sint rem doloremque repellat, eaque cum perferendis!
+                    Nulla corrupti ratione harum incidunt enim asperiores debitis recusandae maxime? Doloremque dolore soluta ea, voluptates dolorum odit ex doloribus facere, eos, quam numquam explicabo magnam autem dolores hic incidunt culpa?
+                    Quis tempora nihil alias, quidem dolorem impedit, deserunt error numquam cupiditate excepturi natus quas eos nulla temporibus iste magni debitis id odit quam quibusdam placeat optio. Dolorum vel pariatur aut.
+                </p>
+                <ul class="bullet-point">
+                    <li>Erster Punkt, mit etwas längerer Beschreibung</li>
+                    <li>Zweiter Punkt, mit etwas längerer Beschreibung</li>
+                    <li>Dritter Punkt, mit etwas längerer Beschreibung</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="header">CodeBeispiel</h2>
+            <div>
+                <p>Dies ist nur ein Beispiel für die Abgabe, es hat nichts mit unserer Website zu tun</p>
+                <pre>
+                    <code class="language-javascript">
+                        const app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0x1099bb });
+                        document.body.appendChild(app.view);
+
+                        const bunny = PIXI.Sprite.from('assets/basics/bunny.png');
+
+                        bunny.anchor.set(0.5);
+
+                        bunny.x = app.screen.width / 2;
+                        bunny.y = app.screen.height / 2;
+
+                        app.stage.addChild(bunny);
+
+                        app.ticker.add((delta) => {
+                            bunny.rotation += 0.01 * delta;
+                        });
+                    </code>                    
+                </pre>
+            </div>
+        </section>
+
+        <section>
+            <div class="header">
+                <h2>Ergebnis</h2>
+                <h3>Eat It!</h3>
+                <div class="game-description"> Try to flood the entire board to win!</div>
+            </div>
+
+            <div class="canvas" id="canvas"></div>
+            <div id="clicks"></div>
+            
+        </section>
+
+        <section>
+            <h2 class="header">Zusammenfassung</h2>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius amet ad nihil eum, ducimus magni praesentium deserunt esse, repellendus vero itaque aliquid distinctio sint rem doloremque repellat, eaque cum perferendis!
+                    Nulla corrupti ratione harum incidunt enim asperiores debitis recusandae maxime? Doloremque dolore soluta ea, voluptates dolorum odit ex doloribus facere, eos, quam numquam explicabo magnam autem dolores hic incidunt culpa?
+                    Quis tempora nihil alias, quidem dolorem impedit, deserunt error numquam cupiditate excepturi natus quas eos nulla temporibus iste magni debitis id odit quam quibusdam placeat optio. Dolorum vel pariatur aut.
+                </p>
+                <ul class="bullet-point">
+                    <li>Erster Punkt, mit etwas längerer Beschreibung</li>
+                    <li>Zweiter Punkt, mit etwas längerer Beschreibung</li>
+                    <li>Dritter Punkt, mit etwas längerer Beschreibung</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <div>Created by: </div>
+                <ul class="footer-bullet-point">
+                    <li>Susanne Danninger</li>
+                    <li>Fabian Hintringer</li>
+                </ul>
+        </footer>
+
+        <script src="js/pixi.min.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/prism.js"></script>
+    </body>
+</html>
