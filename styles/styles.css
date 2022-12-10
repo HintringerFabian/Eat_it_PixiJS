@@ -77,14 +77,17 @@ footer {
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .game-description {
-  font-size: 1.8rem;
+  font-family: var(--font-family-monospace);
+  color: var(--text-color-headlines);
+  text-align: center;
+  position: relative;
+  font-size: 1.3rem;
+  margin: 0 auto;
 }
 
 .bullet-point {
