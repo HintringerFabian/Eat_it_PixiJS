@@ -31,18 +31,20 @@ h2 {
 }
 
 h3 {
-  font-size: 2.0rem;
+  font-size: 1.8rem;
   margin-bottom: 0;
 }
 
 p {
   font-size: 1.3rem;
   text-align: center;
+}
 
+b {
+  color: var(--main-color);
 }
 
 section {
-  /* text should be centered  with about 20% distance from left and right */
   margin: 0% auto;
   width: 60%;
   border: 2px solid var(--main-color);
@@ -50,15 +52,13 @@ section {
 }
 
 footer { 
-  background-color: var(--background-color);
   color: var(--text-color);
   padding-left: 20%;
   padding-top: 20px;
   border: 2px solid var(--main-color);
 
   width: 60%;
-  margin: 0% auto;
-  /* padding left right 75px */
+  margin: 0 auto;
   padding-left: 75px;
   padding-right: 75px;
 }
@@ -92,8 +92,6 @@ footer {
 
 .bullet-point {
   font-size: 1.3rem;
-  text-align: left;
-  margin-left: 35%;
 }
 
 .footer-bullet-point {

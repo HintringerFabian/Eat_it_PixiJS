@@ -7,7 +7,7 @@
         <title>Document</title>
         <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
         <link href="./styles/styles.css" rel="stylesheet" />
-        <link href="./styles/prism.css" rel="stylesheet" />
+        <link href="./highlight/styles/base16/dracula.min.css" rel="stylesheet" />
     </head>
     <body>
         <header>
@@ -19,18 +19,32 @@
         </header>
 
         <section>
-            <h2 class="header">Erklärung</h2>
+            <h2 class="header">Was ist PixiJS?</h2>
+            <div>
+                <p>
+                    PixiJS ist eine <b>2D Web Creation Engine</b>, welche WebGL benutzt, um visuellen Kontent darzustellen. 
+                </p>
+            </div>
+
+            <h2 class="header">Wie benutzt man PixiJS?</h2>
             <div>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius amet ad nihil eum, ducimus magni praesentium deserunt esse, repellendus vero itaque aliquid distinctio sint rem doloremque repellat, eaque cum perferendis!
                     Nulla corrupti ratione harum incidunt enim asperiores debitis recusandae maxime? Doloremque dolore soluta ea, voluptates dolorum odit ex doloribus facere, eos, quam numquam explicabo magnam autem dolores hic incidunt culpa?
                     Quis tempora nihil alias, quidem dolorem impedit, deserunt error numquam cupiditate excepturi natus quas eos nulla temporibus iste magni debitis id odit quam quibusdam placeat optio. Dolorum vel pariatur aut.
                 </p>
-                <ul class="bullet-point">
-                    <li>Erster Punkt, mit etwas längerer Beschreibung</li>
-                    <li>Zweiter Punkt, mit etwas längerer Beschreibung</li>
-                    <li>Dritter Punkt, mit etwas längerer Beschreibung</li>
-                </ul>
+            </div>
+
+            <h2 class="header">Was PixiJS auszeichnet</h3>
+                <div>
+                    <ul class="bullet-point">
+                        <li>Open Source</li>
+                        <li>Geschwindigkeit</li>
+                        <li>Einfache Bereitstellung</li>
+                        <li>WebGL Native</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
@@ -73,11 +87,14 @@
         <section>
             <h2 class="header">Zusammenfassung</h2>
             <div>
+                <h3 class="header">Herausforderungen und Erfahrungen</h3>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius amet ad nihil eum, ducimus magni praesentium deserunt esse, repellendus vero itaque aliquid distinctio sint rem doloremque repellat, eaque cum perferendis!
                     Nulla corrupti ratione harum incidunt enim asperiores debitis recusandae maxime? Doloremque dolore soluta ea, voluptates dolorum odit ex doloribus facere, eos, quam numquam explicabo magnam autem dolores hic incidunt culpa?
                     Quis tempora nihil alias, quidem dolorem impedit, deserunt error numquam cupiditate excepturi natus quas eos nulla temporibus iste magni debitis id odit quam quibusdam placeat optio. Dolorum vel pariatur aut.
                 </p>
+
+                <h3 class="header">Lessons learned</h3>
                 <ul class="bullet-point">
                     <li>Erster Punkt, mit etwas längerer Beschreibung</li>
                     <li>Zweiter Punkt, mit etwas längerer Beschreibung</li>
@@ -94,8 +111,9 @@
                 </ul>
         </footer>
 
-        <script src="js/pixi.min.js"></script>
-        <script src="js/index.js"></script>
-        <script src="js/prism.js"></script>
+        <script src="./js/pixi.min.js"></script>
+        <script src="./js/index.js"></script>
+        <script src="./highlight/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
     </body>
 </html>
