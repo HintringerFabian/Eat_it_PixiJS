@@ -64,17 +64,15 @@ footer {
   color: var(--text-color-headlines);
   text-align: center;
   position: relative;
-  margin: 0 auto; 
+  margin: 10px;
 }
 
 .canvas {
   background-color: var(--main-color);
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 50vw;
+  height: 50vw;
   margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .game-description {
