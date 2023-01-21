@@ -94,7 +94,6 @@ section {
   font-family: var(--font-family-monospace);
   color: var(--text-color-headlines);
   text-align: center;
-  position: relative;
   font-size: 1.3rem;
   margin: 0 auto;
 }
