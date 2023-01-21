@@ -62,6 +62,8 @@ class Player extends Circle {
         this.sprite = PIXI.Sprite.from("assets/player.png");
         this.sprite.anchor.set(0.5);
 
+        this.star_sound = new Audio("assets/star_sound.mp3");
+
         app.stage.addChild(this.sprite);
 
         this.textures = [];
@@ -91,18 +93,20 @@ class Player extends Circle {
         this.sprite.x = this.circle.x;
         this.sprite.y = this.circle.y;
 
-
-        if (!this.invincible) {
-            monsters.forEach(m => {
-                if (this.collide(m)) {
+        monsters.forEach(m => {
+            if (this.collide(m)) {
+                if (this.invincible) {
+                    m.remove();
+                    monsters.splice(monsters.indexOf(m), 1);
+                } else {
                     reset_game();
                 }
-            });
-        }
+            }
+        });
 
         // coin
         if (this.collide(coin)) {
-
+            coin.play_sound();
             if(coin.is_special) {
                 this.star_mode();
                 coin.is_special = false;
@@ -138,6 +142,7 @@ class Player extends Circle {
         // also set this.invincible to true and set it to false after 5 seconds
 
         this.invincible = true;
+        this.star_sound.play();
         let i = 0;
         let interval = setInterval(() => {
             this.sprite.texture = this.textures[i];
@@ -148,6 +153,7 @@ class Player extends Circle {
             clearInterval(interval);
             this.sprite.texture = this.textures[4];
             this.invincible = false;
+            this.star_sound.pause();
         }, 5000);
     }
 }
@@ -158,10 +164,16 @@ class Coin extends Circle {
         super(color, radius, velocity);
 
         this.is_special = false;
+
+        this.sound = new Audio("assets/coin.wav");
     }
     place_random() {
         this.circle.x = this.radius + Math.random()*(screen_width - 2*this.radius);
         this.circle.y = this.radius + Math.random()*(screen_heigth - 2*this.radius);
+    }
+
+    play_sound() {
+        this.sound.play();
     }
 }
 
@@ -258,6 +270,8 @@ function setupControls() {
 }
 
 function reset_game() {
+    player.star_sound.pause();
+    game_over_sound.play();
     monsters.forEach(m => {
         m.remove();
     });
@@ -303,6 +317,7 @@ let coin = new Coin(0x1f2833, 10);
 let coin_count;
 let fps = 1000 / 60;
 const keys = {};
+let game_over_sound = new Audio("assets/game_over.wav");
 
 app.renderer.backgroundColor = 0x45A29E;
 document.querySelector("div#canvas").appendChild(app.view);
