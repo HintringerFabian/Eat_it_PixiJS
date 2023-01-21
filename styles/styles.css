@@ -1,8 +1,8 @@
 :root {
-  --background-color: #0B0C10;
+  --background-color: #18292b;
   --text-color: #C5C6C7;
   --main-color: #66FCF1;
-  --highlight-color: #45A29E;
+  --highlight-color: #ce9a4cde;
 
   --text-color-headlines: var(--main-color);
   --nav-active-color: var(--main-color);
@@ -44,19 +44,24 @@ section {
   margin: 0% auto;
   width: 60%;
   border: 2px solid var(--main-color);
-  padding: 75px;
+  padding: 6%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
-footer { 
-  color: var(--text-color);
-  padding-left: 20%;
-  padding-top: 20px;
-  border: 2px solid var(--main-color);
+.nav {
+  font-family: var(--font-family-monospace);
+  text-align: right;
+  font-size: 1.4rem;
+}
 
-  width: 60%;
-  margin: 0 auto;
-  padding-left: 75px;
-  padding-right: 75px;
+.nav-link {
+  color: var(--text-color-headlines);
+  margin: 0 10px;
+}
+
+.nav-link:hover {
+  color: var(--highlight-color);
 }
 
 .header {
