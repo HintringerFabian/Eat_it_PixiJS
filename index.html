@@ -78,8 +78,14 @@
                 <h3>Eat It!</h3>
             </div>
             <div class="game-description" id=score>SCORE: <span>0</span></div>
-            <div class="canvas" id="canvas"></div>
-            <div class="game-description" id="controls">Arrows to <b>move</b>.<br><b>Avoid</b> the evil <b>circles!</b></div>            
+            <div class="canvas" id="canvas">
+                <!-- Button to start the game with function on_start -->
+                <button class="start-button" id="start" onclick="on_start()">Start the Game</button>
+            </div>
+            <div class="game-description" id="controls">
+                Arrows to <b>move</b>.<br><b>Avoid</b> the evil <b>circles!</b><br><br>
+                Every <b>7th</b> coin is a yellow coin,<br> which gives you STAR POWER for <b>5 seconds</b>!
+            </div>
         </section>
 
         <section>

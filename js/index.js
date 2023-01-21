@@ -110,10 +110,7 @@ class Player extends Circle {
             if(coin.is_special) {
                 this.star_mode();
                 coin.is_special = false;
-                // draw a black circle
-                coin.circle.beginFill(0x000000);
-                coin.circle.drawCircle(0, 0, coin.radius);
-                coin.circle.endFill();
+                coin.set_black();
 
             }
 
@@ -126,11 +123,9 @@ class Player extends Circle {
             let speed = this.speed * speed_multiplier + 0.2;
             this.speed = Math.min(max_speed, speed);
 
-            if (coin_count % 5 === 0) {
+            if ((coin_count+1) % 5 === 0) {
                 coin.is_special = true;
-                coin.circle.beginFill(0xffd700);
-                coin.circle.drawCircle(0, 0, coin.radius);
-                coin.circle.endFill();
+                coin.set_yellow();
             }
         }
     }
@@ -174,6 +169,18 @@ class Coin extends Circle {
 
     play_sound() {
         this.sound.play();
+    }
+
+    set_black() {
+        coin.circle.beginFill(0x000000);
+        coin.circle.drawCircle(0, 0, coin.radius);
+        coin.circle.endFill();
+    }
+
+    set_yellow() {
+        coin.circle.beginFill(0xffd700);
+        coin.circle.drawCircle(0, 0, coin.radius);
+        coin.circle.endFill();
     }
 }
 
@@ -276,6 +283,9 @@ function reset_game() {
         m.remove();
     });
 
+    coin.is_special = false;
+    coin.set_black();
+
     monsters = [];
     addMonster();
     player.reset();
@@ -308,6 +318,22 @@ window.onresize = () => {
 // Game initialisation
 /////////////////////////////////
 
+function on_start() {
+    let button = document.querySelector("#start");
+    // hide the button
+    button.style.display = "none";
+
+    app.renderer.backgroundColor = 0x45A29E;
+    document.getElementById("canvas").appendChild(app.view);
+    setupControls();
+    setInterval(gameLoop, fps);
+    window.onresize(undefined);
+}
+
+/////////////////////////////////
+// Define global variables
+/////////////////////////////////
+
 let screen_width = 512, screen_heigth=512;
 let app = new PIXI.Application({width: screen_width, height: screen_heigth, antialias:true});
 let monsters = [];
@@ -319,8 +345,6 @@ let fps = 1000 / 60;
 const keys = {};
 let game_over_sound = new Audio("assets/game_over.wav");
 
-app.renderer.backgroundColor = 0x45A29E;
-document.querySelector("div#canvas").appendChild(app.view);
-setupControls();
-setInterval(gameLoop, fps);
-window.onresize(undefined);
+/////////////////////////////////
+// Start the game
+/////////////////////////////////
