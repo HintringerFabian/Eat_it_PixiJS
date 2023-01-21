@@ -11,6 +11,18 @@
   --font-family-monospace: "Audiowide", "Courier New", Courier, monospace;
 }
 
+nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  margin: 0% auto;
+  width: 70%;
+  border: 2px solid var(--main-color);
+  padding: 6%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
 body {
   font-family: var(--font-family-body);
   color: var(--text-color);
@@ -68,13 +80,11 @@ section {
   font-family: var(--font-family-monospace);
   color: var(--text-color-headlines);
   text-align: center;
-  position: relative;
   margin: 10px;
 }
 
 .canvas {
   background-color: var(--main-color);
-  position: relative;
   width: 50vw;
   height: 50vw;
   margin: 0 auto;
