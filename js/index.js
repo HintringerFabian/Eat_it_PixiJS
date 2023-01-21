@@ -1,7 +1,11 @@
+/////////////////////////////////
+// Classes
+/////////////////////////////////
+
 class Circle {
-    constructor(color, radius, v) {
+    constructor(color, radius, velocity) {
         this.radius = radius;
-        this.v = v;
+        this.velocity = velocity;
 
         let circle = new PIXI.Graphics();
         circle.beginFill(color);
@@ -29,118 +33,175 @@ class Circle {
 
 class Monster extends Circle {
     update() {
-        this.circle.x += this.v.x;
-        this.circle.y += this.v.y;
+        this.circle.x += this.velocity.x;
+        this.circle.y += this.velocity.y;
 
-        if (this.circle.x >= w-this.radius) {
-            shake("right");
-            this.v.x *= -1;
+        if (this.circle.x >= screen_width-this.radius) {
+            this.velocity.x *= -1;
         }
 
         else if (this.circle.x <= this.radius) {
-            shake("left");
-            this.v.x *= -1;
+            this.velocity.x *= -1;
         }
 
-        if (this.circle.y >= h-this.radius) {
-            shake("down");
-            this.v.y *= -1;
+        if (this.circle.y >= screen_heigth-this.radius) {
+            this.velocity.y *= -1;
         }
         else if (this.circle.y <= this.radius) {
-            shake("up");
-            this.v.y *= -1;
+            this.velocity.y *= -1;
         }
     }
 }
 
 class Player extends Circle {
-    constructor(color, radius, v) {
-        super(color, radius, v);
+    constructor(color, radius) {
+        let velocity = {x:0, y:0}
+        super(color, radius, velocity);
         this.reset();
+        this.invincible = false;
+        this.sprite = PIXI.Sprite.from("assets/player.png");
+        this.sprite.anchor.set(0.5);
+
+        app.stage.addChild(this.sprite);
+
+        this.textures = [];
+        let texture_names = ["_red", "_yellow", "_green", "_lightblue", "", "_purple"]
+
+        for (let i = 0; i < texture_names.length; i++) {
+            let texture = PIXI.Texture.from("assets/player" + texture_names[i] + ".png");
+            this.textures.push(texture);
+        }
     }
 
     reset() {
-        this.circle.x = w/2;
-        this.circle.y = h/2;
+        this.circle.x = screen_width/2;
+        this.circle.y = screen_heigth/2;
         this.speed = 2;
+
+        // set the player texture to the original one
+        //this.sprite.texture = this.textures[4];
     }
 
     update() {
-        let x = this.circle.x + this.v.x;
-        let y = this.circle.y + this.v.y;
+        let x = this.circle.x + this.velocity.x;
+        let y = this.circle.y + this.velocity.y;
 
-        this.circle.x = Math.min(Math.max(x, this.radius), w-this.radius);
-        this.circle.y = Math.min(Math.max(y, this.radius), w-this.radius);
-        test.x = this.circle.x;
-        test.y = this.circle.y;
-        
-        monsters.forEach(m => {
-            if (this.collide(m)) {
-                reset();
-                return;
-            }
-        });
+        this.circle.x = Math.min(Math.max(x, this.radius), screen_width-this.radius);
+        this.circle.y = Math.min(Math.max(y, this.radius), screen_heigth-this.radius);
+        this.sprite.x = this.circle.x;
+        this.sprite.y = this.circle.y;
+
+
+        if (!this.invincible) {
+            monsters.forEach(m => {
+                if (this.collide(m)) {
+                    reset_game();
+                }
+            });
+        }
 
         // coin
         if (this.collide(coin)) {
-            updateCoins(coins+1);
-            coin.random();
-            addMonster();
-            this.speed = Math.min(4, this.speed + 0.2);
-            ClickEvent("coins");            
 
-            return;
+            if(coin.is_special) {
+                this.star_mode();
+                coin.is_special = false;
+                // draw a black circle
+                coin.circle.beginFill(0x000000);
+                coin.circle.drawCircle(0, 0, coin.radius);
+                coin.circle.endFill();
+
+            }
+
+            updateCoins(coin_count+1);
+            coin.place_random();
+            addMonster();
+
+            let speed_multiplier = (this.invincible) ? 1.5 : 1;
+            let max_speed = 4 * speed_multiplier;
+            let speed = this.speed * speed_multiplier + 0.2;
+            this.speed = Math.min(max_speed, speed);
+
+            if (coin_count % 5 === 0) {
+                coin.is_special = true;
+                coin.circle.beginFill(0xffd700);
+                coin.circle.drawCircle(0, 0, coin.radius);
+                coin.circle.endFill();
+            }
         }
+    }
+
+    star_mode() {
+        // change the player texture every 0.3 seconds
+        // do this for 5 seconds
+        // and change it back to the original texture
+        // also set this.invincible to true and set it to false after 5 seconds
+
+        this.invincible = true;
+        let i = 0;
+        let interval = setInterval(() => {
+            this.sprite.texture = this.textures[i];
+            i = (i+1) % this.textures.length;
+        }, 300);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            this.sprite.texture = this.textures[4];
+            this.invincible = false;
+        }, 5000);
     }
 }
 
 class Coin extends Circle {
-    random() {
-        this.circle.x = this.radius + Math.random()*(w - 2*this.radius);
-        this.circle.y = this.radius + Math.random()*(h - 2*this.radius);
-    }
+    constructor(color, radius) {
+        let velocity = {x:0, y:0}
+        super(color, radius, velocity);
 
-    update() {
-        let s = 1 + Math.sin(new Date() * 0.01) * 0.2;
-        this.circle.scale.set(s, s);
+        this.is_special = false;
+    }
+    place_random() {
+        this.circle.x = this.radius + Math.random()*(screen_width - 2*this.radius);
+        this.circle.y = this.radius + Math.random()*(screen_heigth - 2*this.radius);
     }
 }
 
-
-function shake(className) {
-    return;
-
-   app.view.className = className;
-   setTimeout(()=>{app.view.className = ""}, 50);
-}
+/////////////////////////////////
+// Functions
+/////////////////////////////////
 
 function addMonster() {
-    monsters.push(new Monster(0xfce3e5, Math.random()*10 + 10, {x:2 + Math.random(), y:2 + Math.random()}));
+    const color = 0xfce3e5
+    const radius = Math.random()*10 + 10
+    const velocity = {x:2 + Math.random(), y:2 + Math.random()}
+
+    const new_monster = new Monster(color, radius, velocity)
+
+    monsters.push(new_monster)
 }
 
 function onkeydown(ev) {
     switch (ev.key) {
         case "ArrowLeft":
         case "a":
-            player.v.x = -player.speed; 
+            player.velocity.x = -player.speed;
             pressed['left'] = true;
             break;
 
         case "ArrowRight":
         case "d":
-            player.v.x = player.speed;
+            player.velocity.x = player.speed;
             pressed['right'] = true;
             break;
 
         case "ArrowUp":
         case "w":
-            player.v.y = -player.speed;
+            player.velocity.y = -player.speed;
             pressed['up'] = true;
             break;
 
         case "ArrowDown": 
         case "s":
-            player.v.y = player.speed;
+            player.velocity.y = player.speed;
             pressed['down'] = true;
             break;
     }
@@ -149,36 +210,54 @@ function onkeyup(ev) {
     switch (ev.key) {
         case "ArrowLeft": 
         case "a":
-            player.v.x = pressed['right']?player.speed:0; 
+            player.velocity.x = pressed['right']?player.speed:0;
             pressed['left'] = false;
             break;
 
         case "ArrowRight": 
         case "d":
-            player.v.x = pressed['left']?-player.speed:0; 
+            player.velocity.x = pressed['left']?-player.speed:0;
             pressed['right'] = false;
             break;
 
         case "ArrowUp": 
         case "w":
-            player.v.y = pressed['down']?player.speed:0; 
+            player.velocity.y = pressed['down']?player.speed:0;
             pressed['up'] = false;
             break;
 
         case "ArrowDown": 
         case "s":
-            player.v.y = pressed['up']?-player.speed:0; 
+            player.velocity.y = pressed['up']?-player.speed:0;
             pressed['down'] = false;
             break;
     }
 }
 
 function setupControls() {
+    // deactivate scrolling
+    window.addEventListener("keydown",
+        function(keyboard_event){
+            keys[keyboard_event.code] = true;
+            switch(keyboard_event.code){
+                case "ArrowUp": case "ArrowDown": case "ArrowLeft": case "ArrowRight":
+                case "Space": keyboard_event.preventDefault(); break;
+                default: break; // do not block other keys
+            }
+        },
+        false);
+    window.addEventListener('keyup',
+        function(keyboard_event){
+            keys[keyboard_event.code] = false;
+        },
+        false);
+
+    // add event functions
     window.addEventListener("keydown", onkeydown);
     window.addEventListener("keyup", onkeyup);
 }
 
-function reset() {
+function reset_game() {
     monsters.forEach(m => {
         m.remove();
     });
@@ -186,67 +265,47 @@ function reset() {
     monsters = [];
     addMonster();
     player.reset();
-    coin.random();
+    coin.place_random();
     updateCoins(0);
 }
 
 function updateCoins(num) {
-    coins = num;
-    document.querySelector('#score span').innerHTML = coins;
+    coin_count = num;
+    document.querySelector('#score span').innerHTML = num;
 }
 
 function gameLoop() {
     player.update();
-    coin.update();
-    monsters.forEach(c => {
-        c.update();
+    monsters.forEach(monster => {
+        monster.update();
     });
 }
 
 // resize
 window.onresize = () => {
-    let d = document.querySelector("div#canvas");
-    w = d.clientWidth;
-    h = w;
-    app.renderer.resize(w, h);
-    reset();
+    let canvas = document.querySelector("div#canvas");
+    screen_width = canvas.clientWidth;
+    screen_heigth = screen_width / 1.8;
+    app.renderer.resize(screen_width, screen_heigth);
+    reset_game();
 }
 
-let w = 512, h=512;
-let app = new PIXI.Application({width: w, height: h, antialias:true});
+/////////////////////////////////
+// Game initialisation
+/////////////////////////////////
+
+let screen_width = 512, screen_heigth=512;
+let app = new PIXI.Application({width: screen_width, height: screen_heigth, antialias:true});
 let monsters = [];
 let pressed = {};
-let player = new Player(0x1f2833, 10, {x:0, y:0});
-let coin = new Coin(0x1f2833, 10, {x:0, y:0});
-let coins;
-let test;
-
-test = PIXI.Sprite.from("assets/player.png");
-test.anchor.set(0.5);
- 
-app.stage.addChild(test);
-
-// deactivate scrolling
-var keys = {};
-window.addEventListener("keydown",
-    function(e){
-        keys[e.code] = true;
-        switch(e.code){
-            case "ArrowUp": case "ArrowDown": case "ArrowLeft": case "ArrowRight":
-            case "Space": e.preventDefault(); break;
-            default: break; // do not block other keys
-        }
-    },
-false);
-window.addEventListener('keyup',
-    function(e){
-        keys[e.code] = false;
-    },
-false);
+let player = new Player(0x1f2833, 10);
+let coin = new Coin(0x1f2833, 10);
+let coin_count;
+let fps = 1000 / 60;
+const keys = {};
 
 app.renderer.backgroundColor = 0x45A29E;
 document.querySelector("div#canvas").appendChild(app.view);
-setInterval(gameLoop, 1000/60);
-
 setupControls();
-window.onresize();
+setInterval(gameLoop, fps);
+window.onresize(undefined);

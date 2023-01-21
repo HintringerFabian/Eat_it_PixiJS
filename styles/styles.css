@@ -84,10 +84,8 @@ section {
 }
 
 .canvas {
-  background-color: var(--main-color);
-  width: 50vw;
-  height: 50vw;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .game-description {
