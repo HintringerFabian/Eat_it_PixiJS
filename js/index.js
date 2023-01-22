@@ -137,7 +137,7 @@ class Player extends Circle {
         // also set this.invincible to true and set it to false after 5 seconds
         this.invincible = true;
         this.star_sound.play();
-        
+
         let i = 0;
         let interval = setInterval(() => {
             this.sprite.texture = this.textures[i];
@@ -344,7 +344,3 @@ let coin_count;
 let fps = 1000 / 60;
 const keys = {};
 let game_over_sound = new Audio("assets/game_over.wav");
-
-/////////////////////////////////
-// Start the game
-/////////////////////////////////
