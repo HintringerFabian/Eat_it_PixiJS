@@ -126,21 +126,6 @@ footer {
   border: 6px solid var(--main-color);
 }
 
-.feat-item {
-  list-style: none;
-  background-color: var(--text-color);
-  color: var(--background-color);
-  padding: 5px;
-  width: 300px;
-  height: 100px;
-  margin: 20px;
-  line-height: 100px;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 10px;
-  border: 6px solid var(--main-color);
-}
-
 .canvas {
   display: flex;
   justify-content: center;
