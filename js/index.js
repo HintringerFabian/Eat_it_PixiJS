@@ -135,9 +135,9 @@ class Player extends Circle {
         // do this for 5 seconds
         // and change it back to the original texture
         // also set this.invincible to true and set it to false after 5 seconds
-
         this.invincible = true;
         this.star_sound.play();
+        
         let i = 0;
         let interval = setInterval(() => {
             this.sprite.texture = this.textures[i];

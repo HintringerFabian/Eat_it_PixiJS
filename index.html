@@ -64,25 +64,30 @@
 
         <section>
             <h2 class="header">CodeBeispiel</h2>
-            
-            <p>Dies ist nur ein Beispiel für die Abgabe, es hat nichts mit unserer Website zu tun</p>
             <pre>
                 <code class="language-javascript">
-                    const app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0x1099bb });
-                    document.body.appendChild(app.view);
-
-                    const bunny = PIXI.Sprite.from('assets/basics/bunny.png');
-
-                    bunny.anchor.set(0.5);
-
-                    bunny.x = app.screen.width / 2;
-                    bunny.y = app.screen.height / 2;
-
-                    app.stage.addChild(bunny);
-
-                    app.ticker.add((delta) => {
-                        bunny.rotation += 0.01 * delta;
-                    });
+                    star_mode() {
+                        // change the player texture every 0.3 seconds
+                        // and play the "star sound" while in star mode
+                        // do this for 5 seconds
+                        // and change it back to the original texture
+                        // also set this.invincible to true and set it to false after 5 seconds
+                        this.invincible = true;
+                        this.star_sound.play();
+                        
+                        let i = 0;
+                        let interval = setInterval(() => {
+                            this.sprite.texture = this.textures[i];
+                            i = (i+1) % this.textures.length;
+                        }, 300);
+                
+                        setTimeout(() => {
+                            clearInterval(interval);
+                            this.sprite.texture = this.textures[4];
+                            this.invincible = false;
+                            this.star_sound.pause();
+                        }, 5000);
+                    }
                 </code>                    
             </pre>
             
@@ -100,7 +105,7 @@
             </div>
             <div class="game-description" id="controls">
                 Arrows to <b>move</b>.<br><b>Avoid</b> the evil <b>circles!</b><br><br>
-                Every <b>7th</b> coin is a yellow coin,<br> which gives you STAR POWER for <b>5 seconds</b>!
+                Every <b>5th</b> coin is a yellow coin,<br> which gives you STAR POWER for <b>5 seconds</b>!
             </div>
         </section>
 
@@ -121,8 +126,36 @@
             </p>
 
             <h3 class="header">Lessons learned</h3>
-            <b>Lesson 1:</b>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti quibusdam eveniet magnam dolores itaque provident saepe aliquam laboriosam. Iusto praesentium esse odio accusantium commodi nemo consequatur? Inventore repellat odit repudiandae.<br>
-            <b>Lesson 2:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi iusto eius cupiditate repellat unde aliquam ducimus voluptas totam iure consectetur facere non, illo at quidem odit atque ab quibusdam quas?
+            <b>Lesson 1:</b>
+            <p>
+                Unbedingt auf einer sicheren Website verwenden. Wenn nur der HTML File aufgemacht wird, 
+                ist es möglich dass Funktionen von PixiJs nicht funktionieren. Dies hat uns gerade am Anfang
+                viel Zeit gekostet. Bis wir herausgefunden haben, dass wir diesen Punkt mit dem VSCode Live Server
+                umgehen konnten.
+            </p>
+            <b>Lesson 2:</b> 
+            <p>
+                PixiJS bietet hervoragenden Support für die Entwicklung von WebGames und das Handling von 
+                Grafiken, jedoch darf nicht unterschätzt werden, dass dennoch viel selbst geschrieben werden 
+                muss direkt in JavaScript. Möglicherweise trifft dies aber auch nur auf unsere Lösung zu.
+            </p>
+            <b>Lesson 3:</b>
+            <p>
+                Auch wenn PixiJS ein Framework zur Spieleentwicklung ist, so ist es dennoch nicht
+                möglich Audiodateien mit PixiJS zu verwalten. Hierfür muss auf normalen JavaScript
+                Code zurückgegriffen werden. Wobei man auch sagen muss, dass es auch hierfür
+                zahlreiche Hilfestellungen im Internet gibt. Und es in knapp 3 Zeilen Code möglich ist
+                eine Audiodatei einzubinden, abzuspielen und zu stoppen.
+            </p>
+            <b>Lesson 4:</b>
+            <p>
+                PixiJS bietet größtenteils Funktionen für das Handling von Grafiken an. Es wird zwar
+                auf der Website beschrieben, dass PixiJS mehr ist als nur ein Grafikframework, jedoch
+                wird auch in den Beispielen fast nur mit Grafiken gearbeitet. Die Ausnahme bildet
+                die Dokumentation zu Events welche Tasteninputs und andere Interaktionen behandelt.
+                Um dies zu veranschaulichen, 18 Überschriften MIT Unterpunkten gibt es. Eine davon
+                ist "Events". Die anderen 17 behandeln grafische Funktionen.
+            </p>
         </section>
 
         <section>
