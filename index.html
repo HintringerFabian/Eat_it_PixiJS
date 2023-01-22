@@ -12,8 +12,9 @@
 
     <body>
         <nav class="nav">
-            <a href="./index.html" class="nav-link active">Home</a>
-            <a href="#game" class="nav-link">Ergebnis</a>
+            <a href="./index.html" class="link">Home</a>
+            <a href="#game" class="link">Ergebnis</a>
+            <a href="#about-us" class="link">About Us</a>
         </nav>
 
         <header>
@@ -27,22 +28,29 @@
         <section>
             <h2 class="header">Was ist PixiJS?</h2>
             <p>
-                PixiJS ist eine <b>2D Web Creation Engine</b>, welche WebGL benutzt, um visuellen Kontent darzustellen. 
+                PixiJs ist eine <b>2D Web Creation Engine</b>, welche WebGL benutzt, 
+                um visuellen Kontent darzustellen. Im Gegensatz zu Flash stellt PixiJs eine bessere 
+                Performance und gute Effekte auf Pixelebene zur Verfügung. Vorallem für Online Spiele, 
+                Datenvisualisierung, interaktive Grafiken und Animationen ist PixiJs perfekt geeignet.
             </p>
 
             <h2 class="header">Wie funktioniert PixiJS?</h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius amet ad nihil eum, ducimus magni praesentium deserunt esse, repellendus vero itaque aliquid distinctio sint rem doloremque repellat, eaque cum perferendis!
-                Nulla corrupti ratione harum incidunt enim asperiores debitis recusandae maxime? Doloremque dolore soluta ea, voluptates dolorum odit ex doloribus facere, eos, quam numquam explicabo magnam autem dolores hic incidunt culpa?
-                Quis tempora nihil alias, quidem dolorem impedit, deserunt error numquam cupiditate excepturi natus quas eos nulla temporibus iste magni debitis id odit quam quibusdam placeat optio. Dolorum vel pariatur aut.
-            </p>
+            <ul class="flex-container">
+                <li class="func-item">1. HTML File erstellen</li>
+                <li class="func-item">2. Web Server erstellen</li>
+                <li class="func-item">3. Pixi.min.js einbinden</li>
+                <li class="func-item">4. Applikation erstellen</li>
+                <li class="func-item">5. Applikation View hinzufügen</li>
+                <li class="func-item">6. Sprite erstellen</li>
+            </ul>
+
 
             <h2 class="header">Was zeichnet PixiJs aus?</h3>
-            <ul class="bullet-point">
-                <li>Open Source</li>
-                <li>Geschwindigkeit</li>
-                <li>Einfache Bereitstellung</li>
-                <li>WebGL Native</li>
+            <ul class="flex-container">
+                <li class="feat-item">Open Source</li>
+                <li class="feat-item">Geschwindigkeit</li>
+                <li class="feat-item">Flexibel</li>
+                <li class="feat-item">WebGL Native</li>
             </ul>
         </section>
 
@@ -92,28 +100,50 @@
             <h2 class="header">Zusammenfassung</h2>
             <h3 class="header">Herausforderungen und Erfahrungen</h3>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius amet ad nihil eum, ducimus magni praesentium deserunt esse, repellendus vero itaque aliquid distinctio sint rem doloremque repellat, eaque cum perferendis!
-                Nulla corrupti ratione harum incidunt enim asperiores debitis recusandae maxime? Doloremque dolore soluta ea, voluptates dolorum odit ex doloribus facere, eos, quam numquam explicabo magnam autem dolores hic incidunt culpa?
-                Quis tempora nihil alias, quidem dolorem impedit, deserunt error numquam cupiditate excepturi natus quas eos nulla temporibus iste magni debitis id odit quam quibusdam placeat optio. Dolorum vel pariatur aut.
+                <p>Anfangs mussten wir uns mit den Grundlagen von PixiJs vertraut machen, 
+                da keiner von uns schon vorher damit gearbeitet hatte. Die Homepage von PixiJs 
+                bietet hier reichlich Möglichkeiten sich einzulesen und Beispiele zu einzelnen 
+                Funktionen zu finden.</p>
+                <p>Schnell haben wir gemerkt, dass es zahlreiche Möglichkeiten gibt und dass wir 
+                uns auf ein paar wenige Funktionen beschränken mussten, um eine funktionierende
+                Applikation zu erstellen, die nicht den Rahmen sprengen würde. 
+                Ein Problem, auf das wir gestoßen sind, war die Tatsache, dass wir einen WebServer brauchten,
+                um die erstellten Sprites anzeigen zu können. Diese Hürde war aber schnell genommen.
+                Da es einige Informationen und Hilfestellung zu PixiJs im Internet gibt, war uns immer geholfen.</p>
             </p>
 
             <h3 class="header">Lessons learned</h3>
-            <ul class="bullet-point">
-                <li>Erster Punkt, mit etwas längerer Beschreibung</li>
-                <li>Zweiter Punkt, mit etwas längerer Beschreibung</li>
-                <li>Dritter Punkt, mit etwas längerer Beschreibung</li>
-            </ul>
+            <b>Lesson 1:</b>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti quibusdam eveniet magnam dolores itaque provident saepe aliquam laboriosam. Iusto praesentium esse odio accusantium commodi nemo consequatur? Inventore repellat odit repudiandae.<br>
+            <b>Lesson 2:</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi iusto eius cupiditate repellat unde aliquam ducimus voluptas totam iure consectetur facere non, illo at quidem odit atque ab quibusdam quas?
         </section>
 
         <section>
-            <footer>
-                <div>Created by: </div>
-                    <ul class="footer-bullet-point">
-                        <li>Susanne Danninger</li>
-                        <li>Fabian Hintringer</li>
-                    </ul>
-            </footer>
+            <h2 class="header" id="about-us">About Us</h2>
+            <p>Diese Webseite ist im Rahmen der Lehrveranstaltung Web-Design und -Programmierung entstanden. 
+               Als motivierte Studenten im 3. Semester an der FH Hagenberg haben wir uns mit Technologien wie 
+               <b>HTML</b>, <b>CSS</b> und <b>JavaScript</b> auseinandergesetzt. Vorallem haben wir uns mit 
+               <b>PixiJs</b> beschäftigt und damit ein kleines WebGame entwickelt.</p>
+            <h3 class="header" id="authors">Autoren</h3>
+            <p>Susanne Danninger und Fabian Hintringer</p>
+            
         </section>
+
+        <section>
+            <h2 class="header" id="links">Weiterführende Links</h2>
+            <p>Download, Erklärungen und Beispiele zu PixiJs <br> 
+                <a href="https://pixijs.com/" class="link">PixiJs Homepage</a>
+            </p>
+            <p>Youtube Tutorial zu PixiJs <br>
+                <a href="https://www.youtube.com/watch?v=GLbjF-ajG_I" class="link">PIXI.js Tutorial - An Overview of PIXI.js and its Advantages</a>
+            </p>
+        </section>
+
+        <footer>
+            <p class="footer"> 
+                <a href="#" class="link">Kontakt</a>
+                <a href="#" class="link">Impressum</a>
+            </p>
+        </footer>
 
         <script src="./js/pixi.min.js"></script>
         <script src="./js/index.js"></script>
