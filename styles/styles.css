@@ -31,6 +31,7 @@ nav {
   padding: 6%;
   padding-top: 1%;
   padding-bottom: 1%;
+  z-index: 1;
 }
 
 body {
@@ -124,6 +125,24 @@ footer {
   text-align: center;
   border-radius: 10px;
   border: 6px solid var(--main-color);
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.func-item:hover {
+  transform: rotateY(180deg);
+}
+
+.func-item-front, .func-item-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.func-item-back {
+  font-size: 1rem;
+  transform: rotateY(180deg);
 }
 
 .canvas {
