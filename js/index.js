@@ -277,6 +277,7 @@ function setupControls() {
 }
 
 function reset_game() {
+    document.querySelector('#highscore span').innerHTML = coin_count;
     player.star_sound.pause();
     game_over_sound.play();
     monsters.forEach(m => {
@@ -326,6 +327,7 @@ function on_start() {
     app.renderer.backgroundColor = 0x45A29E;
     document.getElementById("canvas").appendChild(app.view);
     setupControls();
+    updateCoins(0);
     setInterval(gameLoop, fps);
     window.onresize(undefined);
 }
