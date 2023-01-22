@@ -155,12 +155,14 @@ footer {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb;
+  background-color: var(--text-color);
+  border-radius: 10px;
   color: black;
 }
 
 /* Style the back side */
 .flip-card-back {
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
