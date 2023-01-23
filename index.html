@@ -35,11 +35,12 @@
             </p>
 
             <h2 class="header">Wie funktioniert PixiJS?</h2>
+            <p>Klicke auf die Karten für mehr Kontent!</p>
             <ul class="flex-container">
                 <li class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">1. HTML File erstellen</div>
-                        <div class="flip-card-back">Erstelle wie gewohnt<br> eine HTML Datei.</div>
+                        <div class="flip-card-back">Erstelle wie gewohnt eine HTML Datei.</div>
                     </div>
                 </li>
                 <li class="flip-card">
@@ -51,34 +52,38 @@
                 <li class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">3. Pixi.min.js einbinden</div>
-                        <div class="flip-card-back">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quisquam, quod.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        <div class="flip-card-back"> 
+                            <pre> <code class="language-javascript" id="code"> src="./js/pixi.min.js"> </code> </pre>
                         </div>
                     </div>
                 </li>
                 <li class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">4. Applikation erstellen</div>
-                        <div class="flip-card-back">...</div>
+                        <div class="flip-card-back">
+                            <pre> <code class="language-javascript" id="code"> let app = new PIXI.Application({ width: 640, height: 360 }); </code> </pre>
+                        </div>
                     </div>
                 </li>
                 <li class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">5. Applikation View hinzufügen</div>
-                        <div class="flip-card-back">...</div>
+                        <div class="flip-card-back"> 
+                            <pre> <code class="language-javascript" id="code"> document.body.appendChild(app.view); </code> </pre>
+                        </div>
                     </div>
                 </li>
                 <li class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">6. Sprite erstellen</div>
-                        <div class="flip-card-back">...</div>
+                        <div class="flip-card-back"> 
+                            <pre> <code class="language-javascript" id="code"> let sprite = PIXI.Sprite.from('sample.png'); </code> </pre>
+                        </div>
                     </div>
                 </li>
             </ul>
 
-            <h2 class="header">Was zeichnet PixiJs aus?</h2>
+            <h2 class="header">Was zeichnet PixiJS aus?</h2>
             <h3 class="header">Open Source</h3>
             PixiJs ist Open Source und kann kostenlos verwendet werden. Außerdem gibt es zahlreiche Beispiele und Tutorials
             auf der PixiJs Homepage. PixiJs wird auch auf Github gehostet, um Probleme verfolgen zu können und den Zugriff 
@@ -98,29 +103,30 @@
         <section>
             <h2 class="header">CodeBeispiel</h2>
             <pre>
-                <code class="language-javascript">
-                    star_mode() {
-                        // change the player texture every 0.3 seconds
-                        // and play the "star sound" while in star mode
-                        // do this for 5 seconds
-                        // and change it back to the original texture
-                        // also set this.invincible to true and set it to false after 5 seconds
-                        this.invincible = true;
-                        this.star_sound.play();
-                        
-                        let i = 0;
-                        let interval = setInterval(() => {
-                            this.sprite.texture = this.textures[i];
-                            i = (i+1) % this.textures.length;
-                        }, 300);
-                
-                        setTimeout(() => {
-                            clearInterval(interval);
-                            this.sprite.texture = this.textures[4];
-                            this.invincible = false;
-                            this.star_sound.pause();
-                        }, 5000);
-                    }
+                <!-- formatted like that so it has no tabs in the code  -->
+                <code class="language-javascript" id="code-example"> 
+star_mode() {
+    // change the player texture every 0.3 seconds
+    // and play the "star sound" while in star mode
+    // do this for 5 seconds
+    // and change it back to the original texture
+    // also set this.invincible to true and set it to false after 5 seconds
+    this.invincible = true;
+    this.star_sound.play();
+    
+    let i = 0;
+    let interval = setInterval(() => {
+        this.sprite.texture = this.textures[i];
+        i = (i+1) % this.textures.length;
+    }, 300);
+
+    setTimeout(() => {
+        clearInterval(interval);
+        this.sprite.texture = this.textures[4];
+        this.invincible = false;
+        this.star_sound.pause();
+    }, 5000);
+}
                 </code>                    
             </pre>
         </section>

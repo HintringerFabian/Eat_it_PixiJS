@@ -1,7 +1,7 @@
 :root {
   --background-color: #18292b;
-  --text-color: #C5C6C7;
-  --main-color: #66FCF1;
+  --text-color: #eaeced;
+  --main-color: #8ad2d7;
   --highlight-color: #ce9a4cde;
 
   --text-color-headlines: var(--main-color);
@@ -55,7 +55,6 @@ h3 {
 
 p {
   font-size: 1.3rem;
-  text-align: center;
 }
 
 b {
@@ -69,6 +68,7 @@ section {
   padding: 6%;
   padding-top: 2%;
   padding-bottom: 2%;
+  text-align: center;
 }
 
 footer {
@@ -114,10 +114,10 @@ footer {
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
-  background-color: var(--text-color);
+  background-color: var(--main-color);
   color: var(--background-color);
   padding: 5px;
-  width: 300px;
+  width: 600px;
   height: 150px;
   margin: 20px;
   line-height: 150px;
@@ -155,7 +155,6 @@ footer {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: var(--text-color);
   border-radius: 10px;
   color: var(--background-color);
 }
@@ -197,6 +196,22 @@ footer {
 
 .footer-bullet-point {
   list-style-type: "@ ";
+}
+
+#code {
+  /* make it responsive */
+  display: flex;
+  flex-wrap: wrap;	
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+#code-example {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  margin: 0 auto;
 }
 
 #start {
