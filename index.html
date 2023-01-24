@@ -104,29 +104,29 @@
             <h2 class="header">CodeBeispiel</h2>
             <pre>
                 <!-- formatted like that so it has no tabs in the code  -->
-                <code class="language-javascript" id="code-example"> 
-star_mode() {
-    // change the player texture every 0.3 seconds
-    // and play the "star sound" while in star mode
-    // do this for 5 seconds
-    // and change it back to the original texture
-    // also set this.invincible to true and set it to false after 5 seconds
-    this.invincible = true;
-    this.star_sound.play();
-    
-    let i = 0;
-    let interval = setInterval(() => {
-        this.sprite.texture = this.textures[i];
-        i = (i+1) % this.textures.length;
-    }, 300);
+                <code class="language-javascript code-example">
+                    star_mode() {
+                        // change the player texture every 0.3 seconds
+                        // and play the "star sound" while in star mode
+                        // do this for 5 seconds
+                        // and change it back to the original texture
+                        // also set this.invincible to true and set it to false after 5 seconds
+                        this.invincible = true;
+                        this.star_sound.play();
 
-    setTimeout(() => {
-        clearInterval(interval);
-        this.sprite.texture = this.textures[4];
-        this.invincible = false;
-        this.star_sound.pause();
-    }, 5000);
-}
+                        let i = 0;
+                        let interval = setInterval(() => {
+                            this.sprite.texture = this.textures[i];
+                            i = (i+1) % this.textures.length;
+                        }, 300);
+
+                        setTimeout(() => {
+                            clearInterval(interval);
+                            this.sprite.texture = this.textures[4];
+                            this.invincible = false;
+                            this.star_sound.pause();
+                        }, 5000);
+                    }
                 </code>                    
             </pre>
         </section>

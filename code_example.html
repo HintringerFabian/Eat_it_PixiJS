@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixiJS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="./styles/styles.css" rel="stylesheet" />
+    <link href="./highlight/styles/base16/dracula.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="./index.html" class="link">Home</a>
+        <a href="#game" class="link">Ergebnis</a>
+        <a href="#about-us" class="link">About Us</a>
+    </nav>
+
+    <header>
+        <h1 class="header">
+        PixiJS
+            <img src="https://pixijs.io/examples/examples/assets/bunny.png" alt="PixiJs Bunny" class="bunny">
+        </h1>
+    </header>
+
+    <section>
+        <h2 class="header">CodeBeispiel</h2>
+        <pre>
+            <code class="language-javascript code-example">
+                // Easiest way to create a PIXI application
+                let screen_width = 512, screen_heigth=512;
+                let app = new PIXI.Application({width: screen_width, height: screen_heigth, antialias:true});
+
+                on_start() {
+                    // ...
+                    app.renderer.backgroundColor = 0x45A29E;
+                    document.getElementById("canvas").appendChild(app.view);
+                    // ...
+                }
+            </code>
+        </pre>
+
+        <pre>
+            <code class="language-javascript code-example">
+                // As everything is a circle in our program
+                // we can use the radius and distance between the circles
+                // to check if they collide
+                collide(other) {
+                    let dx = other.circle.x - this.circle.x;
+                    let dy = other.circle.y - this.circle.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+
+                    return dist < (this.radius + other.radius);
+                }
+            </code>
+        </pre>
+
+        <pre>
+            <code class="language-javascript code-example">
+                // This code is located in the player constructor
+                // it reads the different player textures from the assets folder
+                // and stores them in an array
+                // this is used in the later star_mode function
+
+                this.textures = [];
+                let texture_names = ["_red", "_yellow", "_green", "_lightblue", "", "_purple"]
+
+                for (let i = 0; i < texture_names.length; i++) {
+                    let texture = PIXI.Texture.from("assets/player" + texture_names[i] + ".png");
+                    this.textures.push(texture);
+                }
+            </code>
+        </pre>
+
+        <pre>
+            <code class="language-javascript code-example">
+                star_mode() {
+                    // change the player texture every 0.3 seconds
+                    // and play the "star sound" while in star mode
+                    // do this for 5 seconds
+                    // and change it back to the original texture
+                    // also set this.invincible to true and set it to false after 5 seconds
+                    this.invincible = true;
+                    this.star_sound.play();
+
+                    let i = 0;
+                    let interval = setInterval(() => {
+                        this.sprite.texture = this.textures[i];
+                        i = (i+1) % this.textures.length;
+                    }, 300);
+
+                    setTimeout(() => {
+                        clearInterval(interval);
+                        this.sprite.texture = this.textures[4];
+                        this.invincible = false;
+                        this.star_sound.pause();
+                    }, 5000);
+                }
+            </code>
+        </pre>
+    </section>
+
+    <section>
+        <div class="header" id="game">
+            <h2>Ergebnis</h2>
+            <h3>Eat It!</h3>
+        </div>
+        <div class="game-description" id=score>SCORE: <span>0</span></div>
+        <div class="game-description" id=highscore>HIGHSCORE: <span>0</span></div>
+        <div class="canvas" id="canvas">
+        <!-- Button to start the game with function on_start -->
+            <button class="start-button" id="start" onclick="on_start()">Start the Game</button>
+        </div>
+        <p class="game-description" id="controls">
+            Arrows to <b>move</b>.<br><b>Avoid</b> the evil <b>circles!</b><br><br>
+            Every <b>5th</b> coin is a yellow coin,<br> which gives you STAR POWER for <b>5 seconds</b>!
+        </p>
+    </section>
+
+    <section>
+        <h2 class="header" id="about-us">About Us</h2>
+        <p>
+            Diese Webseite ist im Rahmen der Lehrveranstaltung Web-Design und -Programmierung entstanden.
+            Als motivierte Studenten im 3. Semester an der FH Hagenberg haben wir uns mit Technologien wie
+            <b>HTML</b>, <b>CSS</b> und <b>JavaScript</b> auseinandergesetzt. Vorallem haben wir uns mit
+            <b>PixiJs</b> beschäftigt und damit ein kleines WebGame entwickelt.
+        </p>
+        <h3 class="header" id="authors">Autoren</h3>
+        <p>Susanne Danninger und Fabian Hintringer</p>
+    </section>
+
+    <section>
+        <h2 class="header" id="links">Weiterführende Links</h2>
+        <p>
+            Download, Erklärungen und Beispiele zu PixiJs <br>
+            <a href="https://pixijs.com/" class="link">PixiJs Homepage</a>
+        </p>
+        <p>
+            PixiJs Github Repository<br>
+            <a href="https://github.com/pixijs/pixijs" class="link">PixiJs Github Repo</a>
+        </p>
+        <p>
+            Youtube Tutorial zu PixiJs<br>
+            <a href="https://www.youtube.com/watch?v=GLbjF-ajG_I" class="link">PIXI.js Tutorial - An Overview of PIXI.js and its Advantages</a>
+        </p>
+    </section>
+
+    <footer>
+        <p class="footer">
+            <a href="#" class="link">Kontakt</a>
+            <a href="#" class="link">Impressum</a>
+        </p>
+    </footer>
+
+    <script src="./js/pixi.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
