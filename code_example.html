@@ -28,75 +28,75 @@
         <h2 class="header">CodeBeispiel</h2>
         <pre>
             <code class="language-javascript code-example">
-                // Easiest way to create a PIXI application
-                let screen_width = 512, screen_heigth=512;
-                let app = new PIXI.Application({width: screen_width, height: screen_heigth, antialias:true});
+// Easiest way to create a PIXI application
+let screen_width = 512, screen_heigth=512;
+let app = new PIXI.Application({width: screen_width, height: screen_heigth, antialias:true});
 
-                on_start() {
-                    // ...
-                    app.renderer.backgroundColor = 0x45A29E;
-                    document.getElementById("canvas").appendChild(app.view);
-                    // ...
-                }
+on_start() {
+    // ...
+    app.renderer.backgroundColor = 0x45A29E;
+    document.getElementById("canvas").appendChild(app.view);
+    // ...
+}
             </code>
         </pre>
 
         <pre>
             <code class="language-javascript code-example">
-                // As everything is a circle in our program
-                // we can use the radius and distance between the circles
-                // to check if they collide
-                collide(other) {
-                    let dx = other.circle.x - this.circle.x;
-                    let dy = other.circle.y - this.circle.y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
+// As everything is a circle in our program
+// we can use the radius and distance between the circles
+// to check if they collide
+collide(other) {
+    let dx = other.circle.x - this.circle.x;
+    let dy = other.circle.y - this.circle.y;
+    let dist = Math.sqrt(dx*dx + dy*dy);
 
-                    return dist < (this.radius + other.radius);
-                }
+    return dist < (this.radius + other.radius);
+}
             </code>
         </pre>
 
         <pre>
             <code class="language-javascript code-example">
-                // This code is located in the player constructor
-                // it reads the different player textures from the assets folder
-                // and stores them in an array
-                // this is used in the later star_mode function
+// This code is located in the player constructor
+// it reads the different player textures from the assets folder
+// and stores them in an array
+// this is used in the later star_mode function
 
-                this.textures = [];
-                let texture_names = ["_red", "_yellow", "_green", "_lightblue", "", "_purple"]
+this.textures = [];
+let texture_names = ["_red", "_yellow", "_green", "_lightblue", "", "_purple"]
 
-                for (let i = 0; i < texture_names.length; i++) {
-                    let texture = PIXI.Texture.from("assets/player" + texture_names[i] + ".png");
-                    this.textures.push(texture);
-                }
+for (let i = 0; i < texture_names.length; i++) {
+    let texture = PIXI.Texture.from("assets/player" + texture_names[i] + ".png");
+    this.textures.push(texture);
+}
             </code>
         </pre>
 
         <pre>
             <code class="language-javascript code-example">
-                star_mode() {
-                    // change the player texture every 0.3 seconds
-                    // and play the "star sound" while in star mode
-                    // do this for 5 seconds
-                    // and change it back to the original texture
-                    // also set this.invincible to true and set it to false after 5 seconds
-                    this.invincible = true;
-                    this.star_sound.play();
+star_mode() {
+    // change the player texture every 0.3 seconds
+    // and play the "star sound" while in star mode
+    // do this for 5 seconds
+    // and change it back to the original texture
+    // also set this.invincible to true and set it to false after 5 seconds
+    this.invincible = true;
+    this.star_sound.play();
 
-                    let i = 0;
-                    let interval = setInterval(() => {
-                        this.sprite.texture = this.textures[i];
-                        i = (i+1) % this.textures.length;
-                    }, 300);
+    let i = 0;
+    let interval = setInterval(() => {
+        this.sprite.texture = this.textures[i];
+        i = (i+1) % this.textures.length;
+    }, 300);
 
-                    setTimeout(() => {
-                        clearInterval(interval);
-                        this.sprite.texture = this.textures[4];
-                        this.invincible = false;
-                        this.star_sound.pause();
-                    }, 5000);
-                }
+    setTimeout(() => {
+        clearInterval(interval);
+        this.sprite.texture = this.textures[4];
+        this.invincible = false;
+        this.star_sound.pause();
+    }, 5000);
+}
             </code>
         </pre>
     </section>
